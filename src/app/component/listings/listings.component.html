@@ -1,0 +1,15 @@
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1>Listings</h1>
+    <p>The hottest items available</p>
+  </div>
+</div>
+<div class="row">
+    <div class="container col-md-3">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let listing of listings">
+          <a [routerLink]="['/listing/'+listing.$key]">{{listing.title}}</a>
+        </li>
+      </ul>
+    </div>
+</div>

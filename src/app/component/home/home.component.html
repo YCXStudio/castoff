@@ -1,0 +1,29 @@
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1>Shawn's</h1>
+    <p>Please email to scy12a@acu.edu for more information</p>
+    <!-- <a (click)="login()" *ngIf= "!(af.auth | async)"><img src="assets/img/google.png"></a> -->
+  </div>
+</div>
+<div class="row">
+    <!-- Category -->
+    <!-- <div class="container col-md-3">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let listing of listings">
+          <a [routerLink]="['/listing/'+listing.$key]">{{listing.type}}</a>
+        </li>
+      </ul>
+    </div> -->
+
+
+    <div class="col-sm-6 col-md-4" *ngFor="let listing of listings">
+      <div class="thumbnail">
+        <img [routerLink]="['/listing/'+listing.$key]" src="{{listing.path}}" alt="">
+        <div class="caption">
+          <p><strong><a [routerLink]="['/listing/'+listing.$key]">{{listing.title}}</a></strong></p>
+          <p>Price: $<strong>{{listing.price}}</strong></p>
+          Availability: <strong>{{listing.availability}}</strong>
+        </div>
+      </div>
+    </div>
+</div>

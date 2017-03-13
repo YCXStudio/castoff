@@ -1,0 +1,16 @@
+<div class="row">
+    <!-- Category -->
+    <div class="container col-md-12">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let listing of listings">
+          <p><strong><a [routerLink]="['/listing/'+listing.$key]">{{listing.title}}</a></strong></p>
+          <button (click)="setAvailability(true)" type="button" class="btn btn-success" aria-label="Left Align">
+            Available
+          </button>
+          <button (click)="setAvailability(false)" type="button" class="btn btn-danger" aria-label="Left Align">
+            Sold
+          </button>
+        </li>
+      </ul>
+    </div>
+</div>

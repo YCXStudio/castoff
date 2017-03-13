@@ -1,0 +1,68 @@
+<h2 class="page-header">Add Listing</h2>
+<form (submit)="onAddSubmit()">
+
+  <div class="form-group">
+    <input id="image" name="image" [(ngModel)]="image" type="file" >
+  </div>
+
+  <div class="form-group">
+    <label>Title</label>
+    <input class="form-control" type="text" [(ngModel)]="title" name="title" required>
+  </div>
+
+  <!-- <div class="form-group">
+    <label>description</label>
+    <input class="form-control" type="text" [(ngModel)]="description" name="description" required>
+  </div> -->
+
+  <div class="form-group">
+    <label>Price</label>
+    <input class="form-control" type="text" [(ngModel)]="price" name="price" required>
+  </div>
+
+  <input type="submit" value="submit" class="btn btn-success">
+
+</form>
+
+
+<!-- <form class="form-horizontal" role="form" (submit)="onAddSubmit()">
+   <div class="well well-lg col-md-8">
+     <legend>File Upload: New items to let go</legend>
+
+      <div class="form-group">
+        <div class="col-md-6">
+          <label for="images">Image Upload:</label>
+          <input type="file" id="image" name="image" [(ngModel)]="image"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-4">
+          <label for="inputItem" class="control-label">Item:</label>
+          <input class="form-control" id="inputItem" placeholder="Ex: Pen" [(ngModel)]="item" required>
+        </div>
+      <!-- </div> -->
+      <!-- <div class="form-group"> -->
+        <!-- <div class="col-sm-4">
+          <label for="inputPrice" class="control-label">Price:</label>
+          <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input class="form-control" id="inputPrice" placeholder="Ex: 20" [(ngModel)]="price" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-8">
+          <label for="inputDescription" class="control-label">Descriptions:</label>
+          <input class="form-control" id="inputDescription" placeholder="Item is clean" [(ngModel)]="descriptions" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-8">
+          <button style="float: right;" type="submit" class="btn btn-success">Add</button>
+        </div>
+      </div>
+    </div>
+  </form> -->
