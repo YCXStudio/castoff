@@ -8,6 +8,10 @@ import { FirebaseService } from './services/firebase.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 import * as firebase from 'firebase';
+import { ImageUploadModule } from 'ng2-imageupload';
+import { MaterialModule } from '@angular/material';
+import { Angular2FlexModule } from 'angular2-flex';
+import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
@@ -15,9 +19,9 @@ import { ListingsComponent } from './component/listings/listings.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { ListingComponent } from './component/listing/listing.component';
 import { AddListingComponent } from './component/add-listing/add-listing.component';
-import { UploadImgComponent } from './component/upload-img/upload-img.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { ManageListingComponent } from './component/manage-listing/manage-listing.component';
+import { BossmodeComponent } from './component/bossmode/bossmode.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -25,7 +29,7 @@ const appRoutes: Routes = [
   {path: 'listing/:id', component: ListingComponent},
   {path: 'add-listing', component: AddListingComponent},
   {path: 'manage-listing', component: ManageListingComponent},
-  {path: 'upload-img', component: UploadImgComponent}
+  {path: 'bossmode', component: BossmodeComponent}
 ]
 
 export const firebaseConfig = {
@@ -51,9 +55,9 @@ const firebaseAuthConfig = {
     AddListingComponent,
     FileSelectDirective,
     FileDropDirective,
-    UploadImgComponent,
     FooterComponent,
-    ManageListingComponent
+    ManageListingComponent,
+    BossmodeComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,11 @@ const firebaseAuthConfig = {
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
     RouterModule.forRoot(appRoutes),
-    FlashMessagesModule
+    FlashMessagesModule,
+    ImageUploadModule,
+    MaterialModule.forRoot(),
+    Angular2FlexModule.forRoot(),
+    Angulartics2Module.forRoot([ Angulartics2GoogleAnalytics ])
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]

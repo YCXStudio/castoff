@@ -2,7 +2,14 @@
 <form (submit)="onAddSubmit()">
 
   <div class="form-group">
-    <input id="image" name="image" [(ngModel)]="image" type="file" >
+    <img [src]="src" [hidden]="!src"><br>
+      <input id="image"
+      name="image"
+       type="file" image-upload
+      (imageSelected)="selected($event)"
+        [resizeOptions]="resizeOptions"
+        [(ngModel)]="image" required>
+        <br>
   </div>
 
   <div class="form-group">
@@ -10,18 +17,27 @@
     <input class="form-control" type="text" [(ngModel)]="title" name="title" required>
   </div>
 
-  <!-- <div class="form-group">
+  <div class="form-group">
     <label>description</label>
     <input class="form-control" type="text" [(ngModel)]="description" name="description" required>
-  </div> -->
-
-  <div class="form-group">
-    <label>Price</label>
-    <input class="form-control" type="text" [(ngModel)]="price" name="price" required>
   </div>
-
-  <input type="submit" value="submit" class="btn btn-success">
-
+  <br>
+  <div class="form-group">
+    <div class="container">
+      <label>Price:</label>
+      <i class="material-icons">attach_money</i>
+      <input style="width:20%;" type="number" [(ngModel)]="price" name="price" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="container">
+      <label>Original:</label>
+      <i class="material-icons">attach_money</i>
+      <input style="width:20%;" type="text" [(ngModel)]="oldprice" name="oldprice">
+      <input style="float: right;" type="submit" value="submit" class="btn btn-success">
+    </div>
+  </div>
+  <br>
 </form>
 
 

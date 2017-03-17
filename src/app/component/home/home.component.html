@@ -1,29 +1,47 @@
 <div class="jumbotron text-center">
   <div class="container">
     <h1>Shawn's</h1>
-    <p>Please email to scy12a@acu.edu for more information</p>
-    <!-- <a (click)="login()" *ngIf= "!(af.auth | async)"><img src="assets/img/google.png"></a> -->
+    <p>Please email scy12a@acu.edu for more information</p>
   </div>
 </div>
-<div class="row">
-    <!-- Category -->
-    <!-- <div class="container col-md-3">
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let listing of listings">
-          <a [routerLink]="['/listing/'+listing.$key]">{{listing.type}}</a>
-        </li>
-      </ul>
-    </div> -->
 
+    <div id="products" class="container" *ngFor="let listing of listings">
+      <md-toolbar color="primary">
+        <span>{{listing.title}}</span>
+        <span class="spacer"></span>
+        <button md-icon-button [mdMenuTriggerFor]="menu">
+          <md-icon>more_vert</md-icon>
+        </button>
+        <md-menu #menu="mdMenu">
+          <button (click)="deleteItem(listing.$key)" *ngIf="(af.auth | async)" md-menu-item>
+            <md-icon>clear</md-icon>
+            <span>Delete</span>
+          </button>
+        <button *ngIf="!(af.auth | async)" md-menu-item disabled>
+          <md-icon>clear</md-icon>
+          <span>Delete</span>
+        </button>
+      </md-menu>
+      </md-toolbar>
 
-    <div class="col-sm-6 col-md-4" *ngFor="let listing of listings">
-      <div class="thumbnail">
-        <img [routerLink]="['/listing/'+listing.$key]" src="{{listing.path}}" alt="">
-        <div class="caption">
-          <p><strong><a [routerLink]="['/listing/'+listing.$key]">{{listing.title}}</a></strong></p>
-          <p>Price: $<strong>{{listing.price}}</strong></p>
-          Availability: <strong>{{listing.availability}}</strong>
-        </div>
-      </div>
+      <md-card>
+          <img id="itemImg" [routerLink]="['/listing/'+listing.$key]" md-card-image src="{{listing.path}}">
+          <md-card-content>
+            <div class="container">
+              <p>{{listing.description}}</p>
+            </div>
+            <div class="container info-container">
+              <p class="col-sm-4 col-md-4 col-lg-4">Price:  <strong id="item-price">${{listing.price}}</strong> </p>
+              <p class="col-sm-4 col-md-4 col-lg-4">Availability: <strong>{{listing.availability}}</strong></p>
+
+              <a style="float: right;" md-fab color="primary" role="button" href="mailto:scy12a@acu.edu?subject={{listing.title}}">
+                <md-icon>
+                  mail
+                </md-icon>
+              </a>
+            </div>
+
+          </md-card-content>
+      </md-card>
+      <br>
     </div>
-</div>

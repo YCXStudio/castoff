@@ -1,16 +1,18 @@
-<div class="row">
-    <!-- Category -->
-    <div class="container col-md-12">
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let listing of listings">
-          <p><strong><a [routerLink]="['/listing/'+listing.$key]">{{listing.title}}</a></strong></p>
-          <button (click)="setAvailability(true)" type="button" class="btn btn-success" aria-label="Left Align">
-            Available
-          </button>
-          <button (click)="setAvailability(false)" type="button" class="btn btn-danger" aria-label="Left Align">
-            Sold
-          </button>
-        </li>
-      </ul>
+<section class="products">
+
+  <!-- It's likely you'll need to link the card somewhere. You could add a button in the info, link the titles, or even wrap the entire card in an <a href="..."> -->
+
+  <div class="product-card">
+    <div class="product-image">
+      <img style="width: 200px; height: 200px;" src="../../assets/img/item1.jpg">
     </div>
-</div>
+    <div class="product-info">
+      <h5>Winter Jacket</h5>
+      <h6>$99.99</h6>
+    </div>
+  </div>
+
+
+  <!-- more products -->
+
+</section>

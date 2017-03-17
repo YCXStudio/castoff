@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { FirebaseAuthState } from 'angularfire2';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 
 @Injectable()
@@ -10,7 +12,9 @@ export class FirebaseService {
   folder: any;
 
   constructor(
-    private af: AngularFire
+    private af: AngularFire,
+    public flashMessage:FlashMessagesService,
+    private router: Router
   ) {
     this.folder = 'listingimages';
   }
@@ -25,10 +29,6 @@ export class FirebaseService {
     return this.listing;
   }
 
-  getListingImage(id){
-    const storageRef = firebase.storage().ref().child('/listings/'+id)
-  }
-
   setItemAvailability(id, value){
     this.af.database.object('/listings/'+id).update({availability: value});
   }
@@ -40,19 +40,34 @@ export class FirebaseService {
       let path = `/${this.folder}/${selectedFile.name}`;
       let iRef = storageRef.child(path);
       iRef.put(selectedFile).then((snapshot) => {
+        // console.log('Image name: ' + selectedFile.name);
         listing.image = selectedFile.name;
+        // console.log('spaceRef' + spaceRef);
         listing.path = path;
         return this.listings.push(listing);
       });
     }
+  }
+
+  bossLogin() {
+    this.af.auth.login();
+    // @TODO - reroute to REAL BOSS PAGE with analytics
+
+  }
+
+  logout(){
+    firebase.auth().signOut();
+    this.flashMessage.show('You are logged out',
+    {cssClass: 'alert-success', timeout: 3000});
   }
 }
 
 interface Listing{
   $key?: string;
   title?: string;
-  type?: string;
   image?: string;
-  city?: string;
-  owner?: string;
+  price?: string;
+  path?: string;
+  description?: string;
+  oldprice?: string;
 }
